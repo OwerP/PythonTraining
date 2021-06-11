@@ -12,7 +12,7 @@ Do zadania z klasą `Ogloszenie` dodaj kolejne klasy, które po niej dziedziczą
 
 
 class Thing:
-    def __init__(self, attribute):
+    def __init__(self, attribute: str):
         self._attr_name = attribute
 
     def __str__(self):
@@ -20,7 +20,7 @@ class Thing:
 
 
 class Subject(Thing):
-    def __init__(self, attribute, subject_text):
+    def __init__(self, attribute: str, subject_text: str):
         super().__init__(attribute)
         self._subject_text = subject_text
 
@@ -29,7 +29,7 @@ class Subject(Thing):
 
 
 class Description(Thing):
-    def __init__(self, attribute, description):
+    def __init__(self, attribute: str, description: str):
         super().__init__(attribute)
         self._description = description
 
@@ -38,7 +38,7 @@ class Description(Thing):
 
 
 class Price(Thing):
-    def __init__(self, attribute, price_value):
+    def __init__(self, attribute: str, price_value: int):
         super().__init__(attribute)
         self._price = price_value
 
@@ -57,8 +57,10 @@ class SellerProfile(Thing):
     def __str__(self):
         return f'{self._attr_name}: \nUżytkownik: {self._first_name} {self._last_name}\ntel: \t\t{self._phone}\nemail: \t\t{self._email}'
 
+
 class CarAttributes(Thing):
-    def __init__(self, attribute, brand: str, model: str, year: int, course: int, power: float, displacement: float, fuel_type: str):
+    def __init__(self, attribute, brand: str, model: str, year: int, course: int, power: float, displacement: float,
+                 fuel_type: str):
         super().__init__(attribute)
         self._brand = brand
         self._model = model
@@ -70,6 +72,7 @@ class CarAttributes(Thing):
 
     def __str__(self):
         return f'{self._attr_name}: \nProducent: {self._brand} Model: {self._model}\nRocznik: \t\t{self._year}\nprzebieg: \t\t{self._course}\nMoc: \t\t\t{self._power} KM \nPojemność: \t\t{self._displacement} cm3 \nRodz. Paliwa: \t{self._fuel_type} '
+
 
 class FlatAttributes(Thing):
     def __init__(self, attribute, city: str, area: float, rooms: int):
@@ -120,6 +123,7 @@ class CarAnoncement(Announcement):
 
         return '\n'.join(rendered_announcemen)
 
+
 class FlatAnoncement(Announcement):
     def __init__(self):
         super().__init__()
@@ -137,7 +141,8 @@ class FlatAnoncement(Announcement):
 
         return '\n'.join(rendered_announcemen)
 
-#ogłoszenie rowerowe
+
+# ogłoszenie rowerowe
 announcement = Announcement()
 announcement.add_element(Subject('\nSubject', 'Sprzedam Rower Górski'))
 announcement.add_element(Description('Opis',
@@ -146,22 +151,22 @@ announcement.add_element(Price('Cena', '375 PLN'))
 announcement.add_element(SellerProfile('\nProfil', 'Teodor', 'Roosvelt', '+48123456789', 'teodor.roosvelt@gmail.com'))
 print(announcement)
 
-#ogłoszenie samochodowe
+# ogłoszenie samochodowe
 car_anoncement = Announcement()
 car_anoncement.add_element(Subject('\nSubject', 'Sprzedam Toyota Avcensis'))
-car_anoncement.add_element(CarAttributes('Dane Samochodu', 'Toyota', 'Avensis', 1999, 132000,140, 1440, 'Benzyna'))
+car_anoncement.add_element(CarAttributes('Dane Samochodu', 'Toyota', 'Avensis', 1999, 132000, 140, 1440, 'Benzyna'))
 car_anoncement.add_element(Description('\nOpis',
-                                      '\t- samochód w stanie dobrym\n\t- w 2014 remont silnika\n\t- posiada ślady użytkowania\n\t- nowe opony zimowe koła 16"\n\t- Serwisowany w ASO\n\t- bez wypadkowy'))
+                                       '\t- samochód w stanie dobrym\n\t- w 2014 remont silnika\n\t- posiada ślady użytkowania\n\t- nowe opony zimowe koła 16"\n\t- Serwisowany w ASO\n\t- bez wypadkowy'))
 car_anoncement.add_element(Price('Cena', '6375 PLN'))
 car_anoncement.add_element(SellerProfile('\nProfil', 'Teodor', 'Roosvelt', '+48123456789', 'teodor.roosvelt@gmail.com'))
 print(car_anoncement)
 
-#ogłoszenie mieszkaniowe
+# ogłoszenie mieszkaniowe
 car_anoncement = Announcement()
 car_anoncement.add_element(Subject('\nSubject', 'Sprzedam Mieszkanie'))
 car_anoncement.add_element(FlatAttributes('Dane Mieszkania', 'Kraków', 70, 3))
 car_anoncement.add_element(Description('\nOpis',
-                                      '\t- mieszkanie świeżo po remoncie\n\t- jasne: od wschodu południa\n\t- zamkniete osiedle\n\t- dobrze skomunikowane z centrum'))
+                                       '\t- mieszkanie świeżo po remoncie\n\t- jasne: od wschodu południa\n\t- zamkniete osiedle\n\t- dobrze skomunikowane z centrum'))
 car_anoncement.add_element(Price('Cena', '436375 PLN'))
 car_anoncement.add_element(SellerProfile('\nProfil', 'Teodor', 'Roosvelt', '+48123456789', 'teodor.roosvelt@gmail.com'))
 print(car_anoncement)

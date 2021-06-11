@@ -41,7 +41,7 @@ class Otomoto:
     def add_car(self, car: Car, quantity: int = 1):
         #                 zmienna  typ -> sprawdzamy czy zmienna jest danego typu, jak nie to wyjatek
         if not isinstance(car, Car):
-            raise ValueError('product has to be an instance of a Product class.')
+            raise ValueError('car has to be an instance of a Car class.')
 
         if quantity < 1:
             raise ValueError('quantity has to be a positive number.')
@@ -52,9 +52,10 @@ class Otomoto:
         print(f'\nsamochody w canie pomiędzy {bottom_value}PLN  i {top_value}PLN')
         values_from_bottom = dict(filter(lambda x: x[0].price >= bottom_value, self._items.items()))
         values_filtered = dict(filter(lambda x: x[0].price <= top_value, values_from_bottom.items()))
-        for car in values_filtered:
-            print(
-                f'Marka: {car.brand}, Model {car.model}, Color {car.color}, Przebieg: {car.course}, Rocznik: {car.year}, Cena: {car.price: .2f} PLN ')
+        return values_filtered
+        # for car in values_filtered:
+        #     print(
+        #         f'Marka: {car.brand}, Model {car.model}, Color {car.color}, Przebieg: {car.course}, Rocznik: {car.year}, Cena: {car.price: .2f} PLN ')
 
     def year_selector(self, bottom_value: int, top_value: int):
         print(f'\nsamochody z lat pomiędzy {bottom_value}   {top_value}')
@@ -67,9 +68,10 @@ class Otomoto:
     def color_selector(self, color: dict):
         print(f'\nsamochody w kolorach {color} ')
         values = dict(filter(lambda x: x[0].color in color, self._items.items()))
-        for car in values:
-            print(
-                f'Marka: {car.brand}, Model {car.model}, Color {car.color}, Przebieg: {car.course}, Rocznik: {car.year}, Cena: {car.price: .2f} PLN ')
+        return values
+        # for car in values:
+        #     print(
+        #         f'Marka: {car.brand}, Model {car.model}, Color {car.color}, Przebieg: {car.course}, Rocznik: {car.year}, Cena: {car.price: .2f} PLN ')
 
     @classmethod
     def with_cars(cls, cars: List[Car]):
@@ -83,6 +85,15 @@ class Otomoto:
         for car in cars:
             self.add_car(car, 1)
 
+    def __str__(self):
+        rendered_list = []
+        for car in self._items:
+
+            tmp=f'Marka: {car.brand}, Model {car.model}, Color {car.color}, Przebieg: {car.course}, Rocznik: {car.year}, Cena: {car.price: .2f} PLN '
+
+            rendered_list.append(str(tmp))
+
+        return '\n'.join(rendered_list)
 
 car1 = Car('Citroen', 'C5', 'biały', 4200, 1994, 320000)
 car2 = Car('Suzuki', 'gitara', 'czerwony', 3800, 1994, 320000)
@@ -106,8 +117,13 @@ otomoto.add_car(car1, 1)
 otomoto.add_car(car2, 1)
 otomoto.add_car(car3, 1)
 
-otomoto.price_selector(2000, 4800)
+om_price=Otomoto.with_cars(otomoto.price_selector(2000, 4800))
+print(om_price)
 
-otomoto.year_selector(1970, 1990)
 
-otomoto.color_selector({'biały', 'zielony'})
+om_price=Otomoto.with_cars(otomoto.price_selector(2000, 4800))
+om_price_color=Otomoto.with_cars(om_price.color_selector({'biały', 'zielony'}))
+
+print(om_price_color)
+
+#otomoto.year_selector(1970, 1990)

@@ -18,8 +18,7 @@ class Zbiornik:
     def dolej(self, ilosc_wody: float, temperatura_wody: float):
         tmp_ilosc_wody_w_zbiorniku = self.ilosc_wody_w_zbiorniku
         self.ilosc_wody_w_zbiorniku += ilosc_wody
-        self.temperatura_wody_w_zbiorniku = (
-                                                        tmp_ilosc_wody_w_zbiorniku * self.temperatura_wody_w_zbiorniku + ilosc_wody * temperatura_wody) / self.ilosc_wody_w_zbiorniku
+        self.temperatura_wody_w_zbiorniku = (tmp_ilosc_wody_w_zbiorniku * self.temperatura_wody_w_zbiorniku + ilosc_wody * temperatura_wody) / self.ilosc_wody_w_zbiorniku
 
     def odlej(self, ilosc_wody: float):
         if ilosc_wody <= self.ilosc_wody_w_zbiorniku:
