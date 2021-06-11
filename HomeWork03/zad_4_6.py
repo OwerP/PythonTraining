@@ -19,33 +19,25 @@ Użyj tej klasy do zrobienia gry w kółko i krzyżyk.
 
 class PlanszaXO:
     def __init__(self):
-        self.x_o_status_board = [[None, None, None], [None, None, None], [None, None, None]]
+        self.x_o_status_board = [[None, None, None], [None, None, None], [None, None, None]] # 3x3
         self.last_active = 'O'
 
     def state(self, mark):
-        if self.x_o_status_board[0][0] == self.x_o_status_board[0][1] == self.x_o_status_board[0][
-            2] == mark:  # horizontal 0
+        if self.x_o_status_board[0][0] == self.x_o_status_board[0][1] == self.x_o_status_board[0][2] == mark:  # horizontal 0
             return True
-        elif self.x_o_status_board[1][0] == self.x_o_status_board[1][1] == self.x_o_status_board[1][
-            2] == mark:  # horizontal 1
+        elif self.x_o_status_board[1][0] == self.x_o_status_board[1][1] == self.x_o_status_board[1][2] == mark:  # horizontal 1
             return True
-        elif self.x_o_status_board[2][0] == self.x_o_status_board[2][1] == self.x_o_status_board[2][
-            2] == mark:  # horizontal 2
+        elif self.x_o_status_board[2][0] == self.x_o_status_board[2][1] == self.x_o_status_board[2][2] == mark:  # horizontal 2
             return True
-        elif self.x_o_status_board[0][0] == self.x_o_status_board[1][0] == self.x_o_status_board[2][
-            0] == mark:  # vertical 0
+        elif self.x_o_status_board[0][0] == self.x_o_status_board[1][0] == self.x_o_status_board[2][0] == mark:  # vertical 0
             return True
-        elif self.x_o_status_board[0][1] == self.x_o_status_board[1][1] == self.x_o_status_board[2][
-            1] == mark:  # vertical 1
+        elif self.x_o_status_board[0][1] == self.x_o_status_board[1][1] == self.x_o_status_board[2][1] == mark:  # vertical 1
             return True
-        elif self.x_o_status_board[0][2] == self.x_o_status_board[1][2] == self.x_o_status_board[2][
-            2] == mark:  # vertical 2
+        elif self.x_o_status_board[0][2] == self.x_o_status_board[1][2] == self.x_o_status_board[2][2] == mark:  # vertical 2
             return True
-        elif self.x_o_status_board[0][0] == self.x_o_status_board[1][1] == self.x_o_status_board[2][
-            2] == mark:  # diagonal 0
+        elif self.x_o_status_board[0][0] == self.x_o_status_board[1][1] == self.x_o_status_board[2][2] == mark:  # diagonal 0
             return True
-        elif self.x_o_status_board[0][2] == self.x_o_status_board[1][1] == self.x_o_status_board[2][
-            0] == mark:  # diagonal 1
+        elif self.x_o_status_board[0][2] == self.x_o_status_board[1][1] == self.x_o_status_board[2][0] == mark:  # diagonal 1
             return True
         return False
 
@@ -125,8 +117,7 @@ class PlanszaXO:
                     if self.item_is_empty(y, x):
                         x_and_o_display_board = x_and_o_display_board.replace(str_tmp, '   ')
                     else:
-                        x_and_o_display_board = x_and_o_display_board.replace(str_tmp,
-                                                                              ' ' + self.x_o_status_board[y][x] + ' ')
+                        x_and_o_display_board = x_and_o_display_board.replace(str_tmp, ' ' + self.x_o_status_board[y][x] + ' ')
         return (x_and_o_display_board)
 
 

@@ -13,7 +13,8 @@ from typing import List
 
 class Car:
     _next_id = 1
-    def __init__(self,  brand: str, model: str, color: str, price: float, year: int, course: int):
+
+    def __init__(self, brand: str, model: str, color: str, price: float, year: int, course: int):
         self.id = Car._next_id
         Car._next_id += 1
         self.brand = brand
@@ -22,7 +23,6 @@ class Car:
         self.price = price
         self.year = year
         self.course = course
-
 
     def print_info(self):
         print(self.get_info())  # w metodzie mam dostep do atrybutow i metod danego obiektu
@@ -48,13 +48,13 @@ class Otomoto:
 
         self._items[car] += quantity  # mozna by liczyć ilości podobnych
 
-
-    def price_selector(self,bottom_value: int, top_value: int):
+    def price_selector(self, bottom_value: int, top_value: int):
         print(f'\nsamochody w canie pomiędzy {bottom_value}PLN  i {top_value}PLN')
         values_from_bottom = dict(filter(lambda x: x[0].price >= bottom_value, self._items.items()))
         values_filtered = dict(filter(lambda x: x[0].price <= top_value, values_from_bottom.items()))
         for car in values_filtered:
-            print (f'Marka: {car.brand}, Model {car.model}, Color {car.color}, Przebieg: {car.course}, Rocznik: {car.year}, Cena: {car.price: .2f} PLN ')
+            print(
+                f'Marka: {car.brand}, Model {car.model}, Color {car.color}, Przebieg: {car.course}, Rocznik: {car.year}, Cena: {car.price: .2f} PLN ')
 
     def year_selector(self, bottom_value: int, top_value: int):
         print(f'\nsamochody z lat pomiędzy {bottom_value}   {top_value}')
@@ -71,7 +71,6 @@ class Otomoto:
             print(
                 f'Marka: {car.brand}, Model {car.model}, Color {car.color}, Przebieg: {car.course}, Rocznik: {car.year}, Cena: {car.price: .2f} PLN ')
 
-
     @classmethod
     def with_cars(cls, cars: List[Car]):
         tmp = cls()
@@ -79,40 +78,36 @@ class Otomoto:
             tmp.add_car(car, 1)
         return tmp
 
-
-
-    def bulk_load_cars(self, cars: List[Car]):
+    def bulk_cars(self, cars: List[Car]):
 
         for car in cars:
             self.add_car(car, 1)
 
 
-
-car1=Car('Citroen','C5','biały',4200,1994,320000)
-car2=Car('Suzuki','gitara','czerwony',3800,1994,320000)
-car3=Car('Trabant','limuzyna','zielony',2300,1964,320000)
+car1 = Car('Citroen', 'C5', 'biały', 4200, 1994, 320000)
+car2 = Car('Suzuki', 'gitara', 'czerwony', 3800, 1994, 320000)
+car3 = Car('Trabant', 'limuzyna', 'zielony', 2300, 1964, 320000)
 
 volx_cars = [
-    Car('Volxvagen','Passat','biały',1000,1994,320000),
-    Car('Volxvagen','Passat','biały',2000,1994,320000),
-    Car('Volxvagen','Passat','biały',3000,1994,320000),
+    Car('Volxvagen', 'Passat', 'biały', 1000, 1994, 320000),
+    Car('Volxvagen', 'Passat', 'biały', 2000, 1994, 320000),
+    Car('Volxvagen', 'Passat', 'biały', 3000, 1994, 320000),
 ]
 
 toyota_cars = [
-    Car('Toyota','Corola','biały',1000,1989,320000),
-    Car('Toyota','Camry','biały',2000,1994,320000),
-    Car('Toyota','Avalon','biały',3000,1987,320000),
+    Car('Toyota', 'Corola', 'biały', 1000, 1989, 320000),
+    Car('Toyota', 'Camry', 'biały', 2000, 1994, 320000),
+    Car('Toyota', 'Avalon', 'biały', 3000, 1987, 320000),
 ]
 
 otomoto = Otomoto.with_cars(volx_cars)
-otomoto.bulk_load_cars(toyota_cars)
-otomoto.add_car(car1,1)
-otomoto.add_car(car2,1)
-otomoto.add_car(car3,1)
+otomoto.bulk_cars(toyota_cars)
+otomoto.add_car(car1, 1)
+otomoto.add_car(car2, 1)
+otomoto.add_car(car3, 1)
 
 otomoto.price_selector(2000, 4800)
 
 otomoto.year_selector(1970, 1990)
 
 otomoto.color_selector({'biały', 'zielony'})
-

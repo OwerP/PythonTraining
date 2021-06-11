@@ -19,27 +19,28 @@ Przetestuj swoje rozwiązanie i napisz testy, w których:
 """
 import pytest
 
+
 class Pociag:
     def __init__(self):
-        self.speed=10
+        self.speed = 10
         self.fuel_level = 1000
 
     def przyspiesz(self, speed: int):
-        last_speed=self.speed
+        last_speed = self.speed
         last_fuel_level = self.fuel_level
 
-        self.speed +=speed
+        self.speed += speed
         self.fuel_level -= (self.speed - last_speed) * last_speed / 100
-        if (round(100*(self.speed-last_speed)/last_speed,1)>75 or self.fuel_level<0 or speed < 0):
-            self.speed=last_speed
-            self.fuel_level=last_fuel_level
-
+        if (round(100 * (self.speed - last_speed) / last_speed, 1) > 75 or self.fuel_level < 0 or speed < 0):
+            self.speed = last_speed
+            self.fuel_level = last_fuel_level
 
     def __str__(self):
         return f'Moja predkość to {self.speed}. Mam jeszcze {self.fuel_level} litrów paliwa.'
 
     def opis(self):
         return self.__str__()
+
 
 # pociag = Pociag()
 # pociag.przyspiesz(5)
@@ -53,10 +54,12 @@ def test_negative_range():
     pociag.przyspiesz(-10)
     assert pociag.opis() == 'Moja predkość to 10. Mam jeszcze 1000 litrów paliwa.'
 
+
 def test_przyspiesz_5():
     pociag = Pociag()
     pociag.przyspiesz(5)
     assert pociag.opis() == 'Moja predkość to 15. Mam jeszcze 999.5 litrów paliwa.'
+
 
 def test_przyspiesz_5_20():
     pociag = Pociag()
@@ -64,12 +67,14 @@ def test_przyspiesz_5_20():
     pociag.przyspiesz(20)
     assert pociag.opis() == 'Moja predkość to 15. Mam jeszcze 999.5 litrów paliwa.'
 
+
 def test_przyspiesz_5_20_8():
     pociag = Pociag()
     pociag.przyspiesz(5)
     pociag.przyspiesz(20)
     pociag.przyspiesz(8)
     assert pociag.opis() == 'Moja predkość to 23. Mam jeszcze 998.3 litrów paliwa.'
+
 
 def test_przyspiesz_5_20_8_10():
     pociag = Pociag()

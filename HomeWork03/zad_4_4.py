@@ -13,12 +13,13 @@ Dolanie wody do zbiornika powinno powodować zmianę temperatury wody w zbiorn
 class Zbiornik:
     def __init__(self):
         self.ilosc_wody_w_zbiorniku = 0
-        self.temperatura_wody_w_zbiorniku=0
+        self.temperatura_wody_w_zbiorniku = 0
 
     def dolej(self, ilosc_wody: float, temperatura_wody: float):
-        tmp_ilosc_wody_w_zbiorniku=self.ilosc_wody_w_zbiorniku
+        tmp_ilosc_wody_w_zbiorniku = self.ilosc_wody_w_zbiorniku
         self.ilosc_wody_w_zbiorniku += ilosc_wody
-        self.temperatura_wody_w_zbiorniku=(tmp_ilosc_wody_w_zbiorniku*self.temperatura_wody_w_zbiorniku + ilosc_wody*temperatura_wody)/self.ilosc_wody_w_zbiorniku
+        self.temperatura_wody_w_zbiorniku = (
+                                                        tmp_ilosc_wody_w_zbiorniku * self.temperatura_wody_w_zbiorniku + ilosc_wody * temperatura_wody) / self.ilosc_wody_w_zbiorniku
 
     def odlej(self, ilosc_wody: float):
         if ilosc_wody <= self.ilosc_wody_w_zbiorniku:
@@ -30,13 +31,14 @@ class Zbiornik:
             return tmp
 
     def __str__(self):
-        return (f'zbiornik z {self.ilosc_wody_w_zbiorniku} litrami wody o temperaturze {self.temperatura_wody_w_zbiorniku}')
+        return (
+            f'zbiornik z {self.ilosc_wody_w_zbiorniku} litrami wody o temperaturze {self.temperatura_wody_w_zbiorniku}')
 
 
 zb = Zbiornik()
-zb.dolej(300,31)
+zb.dolej(300, 31)
 print(zb)
 zb.odlej(30)
 print(zb)
-zb.dolej(100,1)
+zb.dolej(100, 1)
 print(zb)
